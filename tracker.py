@@ -8,7 +8,7 @@ import shutil
 from gmail import GMail, Message
 from time import sleep
 import random
-import daemon
+import sys
 
 AVARAGE_INTERVAL = 2 * 3600 # Seconds
 RANDOM_RANGE_INTERVAL = 1000
@@ -83,7 +83,11 @@ gmail.connect()
 tracked_products = data["tracked_products"]
 
 if __name__ == '__main__':
-    with daemon.DaemonContext():
-        print("Starting tracker process, to check if the proccess is alive run:\n"
-        "\"ps ax | grep tracker.py\" if it is alive there should be a python3 \"tracker.py\" in the output")
+    if "--daemon" in sys.argv:
+        import daemon
+        with daemon.DaemonContext():
+            print("Starting tracker process, to check if the proccess is alive run:\n"
+            "\"ps ax | grep tracker.py\" if it is alive there should be a python3 \"tracker.py\" in the output")
+            main()
+    else:
         main()
