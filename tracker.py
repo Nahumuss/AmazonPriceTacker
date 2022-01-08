@@ -29,7 +29,7 @@ USER_DATA_FILE = 'user_data.json'
 def get_user_data():
     if not os.path.isfile(USER_DATA_FILE):
         shutil.copyfile(f'.{USER_DATA_FILE}', USER_DATA_FILE)
-        print(f"Initiated project, modify {USER_DATA_FILE} to your configuration, then run this file again")
+        print(f"Initiated program, modify {USER_DATA_FILE} to your configuration, then run this file again")
         exit(0)
 
     data_file = open(USER_DATA_FILE)
